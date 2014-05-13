@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <script src="https://code.angularjs.org/1.2.16/angular.min.js" type="text/javascript"></script>
+        <script src="https://code.angularjs.org/1.2.16/angular-cookies.min.js" type="text/javascript"></script>
+        <script src="https://code.angularjs.org/1.2.16/angular-route.min.js" type="text/javascript"></script>
+        <script src="https://cdn.auth0.com/w2/auth0-widget-3.1.2.js"></script>
+        <script src="https://cdn.auth0.com/w2/auth0-angular-0.4.js"> </script>
+        <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+        <script src="app.js"> </script>
+        <link href="app.css" rel="stylesheet">
+    </head>
+    <body ng-app="auth0-sample" class="home" ng-controller="MainCtrl">
+        <div class="login-page clearfix">
+          <div class="login-box">
+            <a ng-click="login()" class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-user"></i><span>Sign In</span></a>
+          </div>
+          <div ng-show="loggedIn">
+              <h2>The user has logged in successfully</h2>
+              <p>His username is {{auth.profile.name}}</p>
+              <input type="text" ng-model="handle" />
+              <input ng-disabled="!handle" type="button" ng-click="tweet()" value="Tweet" />
+          </div>
+        </div>
+    </body>
+</html>
