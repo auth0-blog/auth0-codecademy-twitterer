@@ -16,14 +16,9 @@ app.configure(function () {
   app.use(express.bodyParser());
   app.use(express.urlencoded());
   app.use(express.json());
-  app.use(express.methodOverride());
-
-  app.use('/public', express.static(__dirname + '/public'));
-
+  
   app.use('/api', authenticate);
-  app.use(cors({
-    origin: 'http://codecademy.com/'
-  }));
+  app.use(cors());
 
   app.use(app.router);
 });
