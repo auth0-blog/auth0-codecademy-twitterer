@@ -1,5 +1,6 @@
 var http = require('http');
 var express = require('express');
+var cors = require('cors');
 var app = express();
 var jwt = require('express-jwt');
 
@@ -22,7 +23,9 @@ app.configure(function () {
   app.use(express.cookieParser());
 
   app.use('/api', authenticate);
-  
+  app.use(cors({
+    origin: 'http://codecademy.com/'
+  }));
 
   app.use(app.router);
 });
