@@ -20,8 +20,6 @@ app.configure(function () {
 
   app.use('/public', express.static(__dirname + '/public'));
 
-  app.use(express.cookieParser());
-
   app.use('/api', authenticate);
   app.use(cors({
     origin: 'http://codecademy.com/'
