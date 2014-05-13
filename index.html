@@ -7,18 +7,36 @@
         <script src="https://cdn.auth0.com/w2/auth0-angular-0.4.js"> </script>
         <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
         <script src="app.js"> </script>
+        <link href="https://auth0.com/app.css" rel="stylesheet">
         <link href="app.css" rel="stylesheet">
     </head>
     <body ng-app="auth0-sample" class="home" ng-controller="MainCtrl">
         <div class="login-page clearfix">
-          <div class="login-box">
-            <a ng-click="login()" class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-user"></i><span>Sign In</span></a>
+          <div class="login-box auth0-box" ng-hide="loggedIn">
+            <img src="https://i.cloudup.com/StzWWrY34s.png" />
+            <h3>Auth0 Example</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <a ng-click="login()" class="btn btn-primary btn-lg btn-block">Access</a>
           </div>
-          <div ng-show="loggedIn">
-              <h2>The user has logged in successfully</h2>
-              <p>His username is {{auth.profile.name}}</p>
-              <input type="text" ng-model="handle" />
-              <input ng-disabled="!handle" type="button" ng-click="tweet()" value="Tweet" />
+          <div ng-show="loggedIn" class="logged-in-box auth0-box">
+            <img src="https://pbs.twimg.com/profile_images/450676627001712640/VTlykjcO.jpeg" class="avatar"/>
+            <h3>Welcome {{auth.profile.name}}</h3>
+              
+            <div class="profile-info row">
+                <div class="profile-info-label col-xs-6">USERNAME</div>
+                <div class="profile-info-content col-xs-6">Info</div>
+            </div>
+            
+            <div class="profile-info row">
+                <div class="profile-info-label col-xs-6">USERNAME</div>
+                <div class="profile-info-content col-xs-6">Info</div>
+            </div>
+            
+            <div class="profile-info row">
+                <div class="profile-info-label col-xs-6">USERNAME</div>
+                <div class="profile-info-content col-xs-6">Info</div>
+            </div>
+            <a href="" class="btn btn-twitter btn-block btn-lg">Tweet progress on @authzero</a>
           </div>
         </div>
     </body>
