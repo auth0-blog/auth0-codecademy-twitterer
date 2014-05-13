@@ -6,6 +6,8 @@ It takes care of validating the JWT token from the FrontEnd and then tweet a sta
 
 You can use this as an example of checking the JWT token using `express-jwt` and then using the `tuiter` library to tweet the results.
 
+You can see the example running at http://auth0.github.io/auth0-codecademy-twitterer. If you want to learn how to integrate Auth0 with Angular and get to the shown result, you can do the following Codecademy course: TODO
+
 # License
 
 The MIT License (MIT)
