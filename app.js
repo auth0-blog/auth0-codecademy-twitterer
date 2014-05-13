@@ -3,7 +3,7 @@ angular.module('auth0-sample', ['auth0', 'authInterceptor'])
   authProvider.init({
     domain: 'codecademy.auth0.com',
     clientID: 'yUiinEhNCEa7jztDjn2d87KHIFUFYNHL',
-    callbackURL: 'http://localhost:5000/public/index.html'
+    callbackURL: location.href
   });
 
 
