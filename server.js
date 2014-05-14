@@ -28,6 +28,9 @@ app.post('/api/finished', function(req, res) {
   var handle = req.body.handle;
   if (handle) {
 
+    if (handle.indexOf(' ') > -1) {
+      handle = handle.substr(0, handle.indexOf(' '));
+    }
     var minutes = 10;
     var seconds = 0;
     
