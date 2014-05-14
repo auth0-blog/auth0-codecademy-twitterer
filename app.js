@@ -26,7 +26,7 @@ angular.module('auth0-sample', ['auth0', 'authInterceptor'])
     $scope.tweet = function() {
         $http({
             method: 'POST',
-            url: '/api/finished',
+            url: 'http://auth0-codecademy.herokuapp.com/api/finished',
             data: {
                 handle: $scope.handle
             }
