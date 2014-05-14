@@ -3,7 +3,7 @@
         <script src="https://code.angularjs.org/1.2.16/angular.min.js" type="text/javascript"></script>
         <script src="https://code.angularjs.org/1.2.16/angular-cookies.min.js" type="text/javascript"></script>
         <script src="https://code.angularjs.org/1.2.16/angular-route.min.js" type="text/javascript"></script>
-        <script src="https://cdn.auth0.com/w2/auth0-widget-3.1.2.js"></script>
+        <script src="https://cdn.auth0.com/w2/auth0-widget-4.js"></script>
         <script src="https://cdn.auth0.com/w2/auth0-angular-0.4.js"> </script>
         <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
         <script src="app.js"> </script>
@@ -15,32 +15,23 @@
           <div class="login-box auth0-box" ng-hide="loggedIn">
             <img src="https://i.cloudup.com/StzWWrY34s.png" />
             <h3>Auth0 Example</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <a ng-click="login()" class="btn btn-primary btn-lg btn-block">Access</a>
+            <p>Zero friction identity infrastructure, built for developers</p>
+            <a ng-click="login()" class="btn btn-primary btn-lg btn-block">SignIn</a>
           </div>
           <div ng-show="loggedIn" class="logged-in-box auth0-box">
-            <img src="https://pbs.twimg.com/profile_images/450676627001712640/VTlykjcO.jpeg" class="avatar"/>
+            <img ng-src="{{auth.profile.picture}}" class="avatar"/>
             <h3>Welcome {{auth.profile.name}}</h3>
               
             <div class="profile-info row">
-                <div class="profile-info-label col-xs-6">USERNAME</div>
-                <div class="profile-info-content col-xs-6">Info</div>
+                <div class="profile-info-label col-xs-6">Nickname</div>
+                <div class="profile-info-content col-xs-6">{{auth.profile.nickname}}</div>
             </div>
             
-            <div class="profile-info row">
-                <div class="profile-info-label col-xs-6">USERNAME</div>
-                <div class="profile-info-content col-xs-6">Info</div>
+            <div class="input-group">
+              <span class="input-group-addon">@</span>
+              <input type="text" class="form-control" placeholder="Enter your twitter screen name" ng-model="handle">
             </div>
-            
-            <div class="profile-info row">
-                <div class="profile-info-label col-xs-6">USERNAME</div>
-                <div class="profile-info-content col-xs-6">Info</div>
-            </div>
-<div class="input-group">
-  <span class="input-group-addon">@</span>
-  <input type="text" class="form-control" placeholder="Username">
-</div>
-            <a href="" class="btn btn-twitter btn-block btn-lg">Tweet progress on @authzero</a>
+            <a ng-disabled="!handle" ng-click="tweet()" class="btn btn-twitter btn-block btn-lg">Tweet progress on @authzero</a>
           </div>
         </div>
     </body>

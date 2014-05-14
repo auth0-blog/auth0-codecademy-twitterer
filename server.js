@@ -3,6 +3,7 @@ var express = require('express');
 var cors = require('cors');
 var app = express();
 var jwt = require('express-jwt');
+var moment = require('moment');
 
 var keys = require('./keys');
 
@@ -26,7 +27,23 @@ app.configure(function () {
 app.post('/api/finished', function(req, res) {
   var handle = req.body.handle;
   if (handle) {
-    var text = '@' + handle + ' implemented a login with Angular and Auth0 in 5 minutes. You should try it out!';
+
+    var minutes = 10;
+    var seconds = 0;
+    
+    if (req.body.start && req.body.end) {
+      var start = moment(start);
+      var end = moment(end);
+      var diff = moment.duration(end.diff(start));
+
+      if (diff.asMinutes() <= 10) {
+        minutes = diff.minutes();
+        seconds = diff.seconds();
+      }
+    }
+
+    var text = '@' + handle + ' implemented a login with Angular and Auth0 in ' +
+      minutes + (seconds ? '\'' + seconds + '\'\'' : '') + ' minutes. You should try it out!';
     tu.update({status: text}, function(err, data) {
       if (err) {
         res.send(400, {error: "Can't tweet", obj: err});  
