@@ -43,7 +43,7 @@ app.post('/api/finished', function(req, res) {
     }
 
     var text = '@' + handle + ' implemented a login with Angular and Auth0 in ' +
-      minutes + 'm' + (seconds ? ' ' + seconds + 'sec' : '') + ' minutes. You should try it out!';
+      minutes + 'm' + (seconds ? ' ' + seconds + 'sec' : '') + '. You should try it out!';
     tu.update({status: text}, function(err, data) {
       if (err) {
         res.send(err.status, {error: "Can't tweet", obj: err});  
