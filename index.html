@@ -31,7 +31,7 @@
               <span class="input-group-addon">@</span>
               <input type="text" class="form-control" placeholder="Enter your twitter screen name" ng-model="handle">
             </div>
-            <a ng-disabled="!handle" ng-click="tweet()" class="btn btn-twitter btn-block btn-lg">Tweet progress on @authzero</a>
+            <a ng-disabled="!handle || tweeting" ng-click="tweet()" class="btn btn-twitter btn-block btn-lg">{{tweetText}}</a>
           </div>
         </div>
     </body>

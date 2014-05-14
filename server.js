@@ -46,7 +46,7 @@ app.post('/api/finished', function(req, res) {
       minutes + (seconds ? '\'' + seconds + '\'\'' : '') + ' minutes. You should try it out!';
     tu.update({status: text}, function(err, data) {
       if (err) {
-        res.send(400, {error: "Can't tweet", obj: err});  
+        res.send(err.status, {error: "Can't tweet", obj: err});  
       } else {
         res.send(200);
       }

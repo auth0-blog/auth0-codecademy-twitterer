@@ -23,7 +23,11 @@ angular.module('auth0-sample', ['auth0', 'authInterceptor'])
         });
     }
 
+    $scope.tweetText = 'Tweet progress on @authzero';
+
     $scope.tweet = function() {
+        $scope.tweetText = 'Tweeting';
+        $scope.tweeting = true;
         $http({
             method: 'POST',
             url: 'http://auth0-codecademy.herokuapp.com/api/finished',
@@ -31,9 +35,10 @@ angular.module('auth0-sample', ['auth0', 'authInterceptor'])
                 handle: $scope.handle
             }
         }).then(function(data) {
-            console.log(data);
-        }).then(function(err) {
-            console.log(err);
+            $scope.tweetText = 'Tweeted successfully';
+        }, function(err) {
+            $scope.tweetText = 'Tweet progress on @authzero';
+            $scope.tweeting = false;
         });
     }
 });
