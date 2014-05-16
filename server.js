@@ -27,11 +27,11 @@ app.configure(function () {
 var type = {
   angular: {
     text: 'AngularJS',
-    url: 'http://www.codecademy.com/courses/web-beginner-en-2jq60/0/1'
+    url: 'http://www.codecademy.com/courses/web-beginner-en-2jq60/1/1'
   },
   vanilla: {
     text: 'vanilla javascript',
-    url: 'http://www.codecademy.com/courses/web-beginner-en-2jq60/1/1'
+    url: 'http://www.codecademy.com/courses/web-beginner-en-2jq60/0/1'
   }
 };
 
