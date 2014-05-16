@@ -24,6 +24,17 @@ app.configure(function () {
   app.use(app.router);
 });
 
+var type = {
+  angular: {
+    text: 'AngularJS',
+    url: 'http://www.codecademy.com/courses/web-beginner-en-2jq60/0/1'
+  },
+  vanilla: {
+    text: 'vanilla javascript',
+    url: 'http://www.codecademy.com/courses/web-beginner-en-2jq60/1/1'
+  }
+};
+
 app.post('/api/finished', function(req, res) {
   var handle = req.body.handle;
   if (handle) {
@@ -45,8 +56,15 @@ app.post('/api/finished', function(req, res) {
       }
     }
 
-    var text = '@' + handle + ' implemented a login with Angular and Auth0 in ' +
-      minutes + 'm' + (seconds ? ' ' + seconds + 'sec' : '') + '. You should try it out!';
+    var exType = type[req.body.type || 'angular'] || type.angular;
+
+    var text = '@' + handle + ' implemented a login with ' + exType.text + ' and Auth0 in ' +
+      minutes + 'm' + (seconds ? ' ' + seconds + 'sec' : '') + '. You should try it out';
+
+    if (text.length <= 140 - (22 + 2)) {
+      text += ': ' + exType.url;
+    }
+
     tu.update({status: text}, function(err, data) {
       if (err) {
         res.send(err.status, {error: "Can't tweet", obj: err});  
