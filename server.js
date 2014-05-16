@@ -46,8 +46,8 @@ app.post('/api/finished', function(req, res) {
     var seconds = 0;
     
     if (req.body.start && req.body.end) {
-      var start = moment(req.body.start);
-      var end = moment(req.body.end);
+      var start = moment(parseInt(req.body.start, 10));
+      var end = moment(parseInt(req.body.end, 10));
       var diff = moment.duration(end.diff(start));
 
       if (diff.asMinutes() <= 10) {
