@@ -36,6 +36,10 @@ var type = {
   quiz: {}
 };
 
+app.get('/ping', function(req, res) {
+  res.send(200, "Aye Aye Captain!");
+})
+
 app.post('/api/finished', function(req, res) {
   var handle = req.body.handle;
   if (handle) {
