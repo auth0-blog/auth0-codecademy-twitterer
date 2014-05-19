@@ -32,7 +32,8 @@ var type = {
   vanilla: {
     text: 'vanilla javascript',
     url: 'http://www.codecademy.com/courses/web-beginner-en-2jq60/0/1'
-  }
+  },
+  quiz: {}
 };
 
 app.post('/api/finished', function(req, res) {
@@ -42,28 +43,38 @@ app.post('/api/finished', function(req, res) {
     if (handle.indexOf(' ') > -1) {
       handle = handle.substr(0, handle.indexOf(' '));
     }
-    var minutes = 10;
-    var seconds = 0;
-    
-    if (req.body.start && req.body.end) {
-      var start = moment(parseInt(req.body.start, 10));
-      var end = moment(parseInt(req.body.end, 10));
-      var diff = moment.duration(end.diff(start));
 
-      if (diff.asMinutes() <= 10) {
-        minutes = diff.minutes();
-        seconds = diff.seconds();
+    var text;
+    if (req.body.type === 'quiz') {
+      text = "@" + handle + " won FREE Bitcoins at Auth0's booth. #gluecon";
+    } else {
+      var minutes = 10;
+      var seconds = 0;
+      
+      if (req.body.start && req.body.end) {
+        var start = moment(parseInt(req.body.start, 10));
+        var end = moment(parseInt(req.body.end, 10));
+        var diff = moment.duration(end.diff(start));
+
+        if (diff.asMinutes() <= 10) {
+          minutes = diff.minutes();
+          seconds = diff.seconds();
+          console.log("Diff is", minutes, seconds, diff.asMinutes());
+        }
       }
+
+      var exType = type[req.body.type || 'angular'] || type.angular;
+
+      text = '@' + handle + ' implemented a login with ' + exType.text + ' and Auth0 in ' +
+        minutes + 'm' + (seconds ? ' ' + seconds + 'sec' : '') + '. You should try it out';
+
+      if (text.length <= 140 - (22 + 2 + 10)) {
+        text += ': ' + exType.url;
+      }
+
+      text += '. #gluecon'
     }
-
-    var exType = type[req.body.type || 'angular'] || type.angular;
-
-    var text = '@' + handle + ' implemented a login with ' + exType.text + ' and Auth0 in ' +
-      minutes + 'm' + (seconds ? ' ' + seconds + 'sec' : '') + '. You should try it out';
-
-    if (text.length <= 140 - (22 + 2)) {
-      text += ': ' + exType.url;
-    }
+    
 
     tu.update({status: text}, function(err, data) {
       if (err) {
