@@ -50,7 +50,7 @@ app.post('/api/finished', function(req, res) {
 
     var text;
     if (req.body.type === 'quiz') {
-      text = "@" + handle + " won FREE Bitcoins at Auth0's booth. #gluecon";
+      text = "@" + handle + " won FREE Bitcoins at Auth0's booth. #ndcoslo";
     } else {
       var minutes = 10;
       var seconds = 0;
@@ -76,7 +76,7 @@ app.post('/api/finished', function(req, res) {
         text += ': ' + exType.url;
       }
 
-      text += '. #gluecon'
+      text += '. #ndcoslo'
     }
     
 
